@@ -4,11 +4,11 @@ import Todo from './Todo.js'
 export default function TodoList(props) {
   return (
     <ul>
-      {props.tasks.map((task, i) => <Todo key={i}
+      {props.tasks.map((task) => <Todo key={task._id}
                                           name={task.task}
                                           completed={task.completed}
-                                          removeTask={() => props.removeTask(i)}
-                                          toggleTask={() => props.toggleTask(i)}/>)}
+                                          removeTask={() => props.removeTask(task._id)}
+                                          toggleTask={() => props.toggleTask(task._id)}/>)}
     </ul>
   )
 }

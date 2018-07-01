@@ -20,10 +20,13 @@
   },
   "homepage": "https://github.com/bnguyen212/react-todo#readme",
   "dependencies": {
+    "axios": "^0.18.0",
     "babel-core": "^6.26.3",
     "babel-loader": "^7.1.4",
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-react": "^6.24.1",
+    "body-parser": "^1.18.3",
+    "cors": "^2.8.4",
     "express": "^4.16.3",
     "mongoose": "^5.1.7",
     "react": "^16.4.1",

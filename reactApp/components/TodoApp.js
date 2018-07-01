@@ -1,6 +1,8 @@
 import React from 'react';
 import InputLine from './InputLine.js';
-import TodoList from './TodoList.js'
+import TodoList from './TodoList.js';
+import axios from 'axios';
+const dbUrl = "http://localhost:3000/db";
 
 export default class TodoApp extends React.Component {
   constructor(props) {
@@ -11,32 +13,51 @@ export default class TodoApp extends React.Component {
   }
 
   componentDidMount() {
-    this.setState({tasks: [{task: '1', completed: false},
-              {task: '2', completed: false},
-              {task: '3', completed: true},
-              {task: '4', completed: false},
-              {task: '5', completed: false},
-              {task: '6', completed: true},
-              {task: '7', completed: false}]})
+    axios.get(dbUrl+"/all")
+    .then(response => {
+      this.setState({tasks: response.data})
+    })
+    .catch((error) => {
+      console.log(error)
+    })
   }
 
   addTask(task) {
-    console.log(task)
-    var tasks = this.state.tasks.slice();
-    tasks.push({task, completed: false})
-    this.setState({tasks})
+    axios.post(dbUrl+"/add", {task})
+    .then(response => {
+      this.setState({tasks: this.state.tasks.concat(response.data)})
+    })
+    .catch((error) => {
+      console.log(error)
+    })
   }
 
-  removeTask(index) {
-    var tasks = this.state.tasks.slice();
-    tasks.splice(index, 1);
-    this.setState({tasks})
+  removeTask(id) {
+    axios.post(dbUrl+'/remove', {id})
+    .then(response => {
+      if (response.data._id === id) {
+        const tasks = this.state.tasks.slice();
+        const index = tasks.findIndex(item => item._id === id)
+        tasks.splice(index, 1);
+        this.setState({tasks})
+      }
+    })
+    .catch((error) => {
+      console.log(error)
+    })
   }
 
-  toggleTask(index) {
-    var tasks=this.state.tasks.slice();
-    tasks[index].completed = !tasks[index].completed
-    this.setState({tasks})
+  toggleTask(id) {
+    axios.post(dbUrl+'/toggle', {id})
+    .then(response => {
+      const tasks = this.state.tasks.slice();
+      const index = tasks.findIndex(item => item._id === response.data._id)
+      tasks.splice(index, 1, response.data);
+      this.setState({tasks})
+    })
+    .catch((error) => {
+      console.log(error)
+    })
   }
 
   render() {
