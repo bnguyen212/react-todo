@@ -12,6 +12,6 @@ git clone git@github.com:bnguyen212/react-todo.git
 ```
 source env.sh
 npm install
-npm run server
+npm start
 ```
-3. Your To-Do List can be accessed in the following directory ```react-todo/build/index.html```
+3. Your To-Do List can be accessed in the following directory ```localhost:3000```
