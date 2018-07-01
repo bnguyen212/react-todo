@@ -3,8 +3,8 @@ import React from 'react';
 export default function Todo(props) {
   return (
     <li>
-    <button onClick={() => props.removeTask()}>X</button>
-    {props.completed ? <span onClick={() => props.toggleTask()}><strike>{props.name}</strike></span> : <span onClick={() => props.toggleTask()}>{props.name}</span>}
+    {props.completed ? <span onClick={() => props.toggleTask()} style={{color: 'red'}}><strike>{props.name}</strike></span> : <span style={{color: 'blue'}} onClick={() => props.toggleTask()}>{props.name}</span>}
+    <span>   </span><button onClick={() => props.removeTask()}>X</button>
     </li>
   )
 }
