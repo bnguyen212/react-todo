@@ -7,7 +7,7 @@
 ```
 git clone git@github.com:bnguyen212/react-todo.git
 ```
-2. Install 
+2. Install
    - **Note**: you need to have a mongoDB database and create an env.sh file in the main directory before this step
 ```
 source env.sh
