@@ -89,13 +89,11 @@ export default class TodoApp extends React.Component {
       tasks = tasks.filter(item => item.task.includes(this.state.search))
     }
 
-    return (
-      <div>
-        <InputLine addTask={(i) => this.addTask(i)} />
-        <TodoList tasks={tasks} removeTask={(i) => this.removeTask(i)} toggleTask={(i) => this.toggleTask(i)} />
+    return <div>
+        <InputLine addTask={i => this.addTask(i)} />
+        <TodoList tasks={tasks} removeTask={i => this.removeTask(i)} toggleTask={i => this.toggleTask(i)} />
         <Filter filter={option => this.filter(option)} />
         <Search search={text => this.search(text)} />
-      </div>
-    )
+      </div>;
   }
 }
